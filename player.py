@@ -1,4 +1,5 @@
 import random
+import math
 
 class Player:
     VERSION = "Best Python player"
@@ -11,7 +12,7 @@ class Player:
         min_to_call = game_state['current_buy_in'] - myself['bet']
         my_money = myself['stack']
         if my_money < min_to_call:
-            return my_money
+            return math.floor(my_money / 2)
         return random.randint(min_to_call, my_money)
 
     def showdown(self, game_state):
