@@ -21,7 +21,9 @@ class Player:
         my_money = myself['stack']
 
         if my_money < min_to_call:
-            return my_money
+            if (my_money / 2) < myself['bet']:
+                return my_money
+            return 0
 
         max_bet = my_money / 9 * (rank +1)
         if max_bet < min_to_call:
