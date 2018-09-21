@@ -1,11 +1,19 @@
 import random
-import math
+import card_query
 
 class Player:
     VERSION = "Best Python player"
 
     def betRequest(self, game_state):
+        rank = 0
+
         myself = game_state['players'][game_state['in_action']]
+
+        try:
+            rank = card_query.query(myself['hole_cards'] + game_state['community_cards'])['rank']
+        except Exception as exc:
+            rank = 0
+
         if ((game_state['round'] == 0) and (game_state['current_buy_in'] >= myself['stack'])):
             return 0
 
@@ -15,7 +23,7 @@ class Player:
         if my_money < min_to_call:
             return my_money
 
-        max_bet = my_money / 8
+        max_bet = my_money / 9 * (rank +1)
         if max_bet < min_to_call:
             max_bet = min_to_call
 
