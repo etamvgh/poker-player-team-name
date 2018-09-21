@@ -15,7 +15,7 @@ class Player:
         if my_money < min_to_call:
             return my_money
 
-        max_bet = my_money / 4
+        max_bet = my_money / 8
         if max_bet < min_to_call:
             max_bet = min_to_call
 
