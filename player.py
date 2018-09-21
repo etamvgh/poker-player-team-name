@@ -11,9 +11,19 @@ class Player:
 
         min_to_call = game_state['current_buy_in'] - myself['bet']
         my_money = myself['stack']
+
         if my_money < min_to_call:
             return my_money
-        return random.randint(min_to_call, my_money)
+
+        max_bet = my_money / 4
+        if max_bet < min_to_call:
+            max_bet = min_to_call
+
+        bet = random.randint(0, max_bet)
+        if bet < min_to_call:
+            bet = min_to_call
+
+        return bet
 
     def showdown(self, game_state):
         pass
